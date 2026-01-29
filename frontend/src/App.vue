@@ -12,7 +12,7 @@ const authStore = useAuthStore()
         <h1><RouterLink to="/">Meus Projetos</RouterLink></h1>
         <div>
           <template v-if="authStore.isAuthenticated">
-            <RouterLink to="/admin">Dashboard</RouterLink>
+            <RouterLink :to="authStore.user?.role === 'ADMIN' ? '/admin' : '/dashboard'">Dashboard</RouterLink>
             <a href="#" @click.prevent="authStore.logout()">Sair</a>
           </template>
           <template v-else>

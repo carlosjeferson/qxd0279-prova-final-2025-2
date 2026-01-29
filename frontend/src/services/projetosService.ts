@@ -1,17 +1,14 @@
 import { api } from "./api";
 
 class ProjetosService {
-  
-  async getAll() {
-    try {
-      return await api.get('/api/projetos');
-    } catch(e) {
-      console.error(`Você ainda precisa tratar o error`, e)
-      throw e
-    }
-    
-  
+  async getAll(page = 1, limit = 5) {
+    return api.get('/api/projetos', {
+      params: {
+        page,
+        limit
+      }
+    });
   }
 }
 
-export const useProjetosService = () => new ProjetosService()
+export const useProjetosService = () => new ProjetosService();
